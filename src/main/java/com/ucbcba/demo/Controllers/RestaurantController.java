@@ -31,6 +31,12 @@ public class RestaurantController {
     private UserLikesService userLikesService;
     private UserService userService;
     private CommentService commentService;
+    private levelRestaurantService levelRestaurantService;
+
+    @Autowired
+    public void setLevelRestaurantService(levelRestaurantService levelRestaurantService) {
+        this.levelRestaurantService = levelRestaurantService;
+    }
 
     @Autowired
     public void setRestaurantService(RestaurantService restaurantService) {
@@ -84,6 +90,7 @@ public class RestaurantController {
         model.addAttribute("restaurantCategories", categoryService.listAllCategories());
         model.addAttribute("cities", cityService.listAllCities());
         model.addAttribute("restaurant", new Restaurant());
+        model.addAttribute("levelRestaurants",levelRestaurantService.listAllLevelRestaurants());
         return "newRestaurant";
     }
 
@@ -157,6 +164,7 @@ public class RestaurantController {
         model.addAttribute("photos", restaurantPhotos);
         model.addAttribute("images", photoService.listAllPhotosById(id));
         model.addAttribute("user", user);
+        model.addAttribute("levelRestaurants",levelRestaurantService.listAllLevelRestaurants());
         return "restaurantForm";
     }
 
@@ -234,6 +242,45 @@ public class RestaurantController {
         model.addAttribute("isLiked", isLiked);
         model.addAttribute("logged", logged);
         model.addAttribute("photos", restaurantPhotos);
+
+        String aux = "";
+        Integer ratingUsers = restaurantService.getScore(id);
+        if(ratingUsers<1)
+        {
+            aux = "impopular";
+        }
+        else
+        {
+            if(ratingUsers <2)
+            {
+                aux = "poco";
+            }
+            else
+            {
+                if(ratingUsers<3)
+                {
+                    aux = "intermedio";
+                }
+                else
+                {
+                    if(ratingUsers<4)
+                    {
+                        aux = "popular";
+                    }
+                    else
+                    {
+                        aux = "muy";
+                    }
+                }
+            }
+        }
+        String color="verde";
+        if(ratingUsers < restaurant.getLevelRestaurant().getRating())
+            color = "rojo";
+        if(ratingUsers == restaurant.getLevelRestaurant().getRating())
+            color = "amarillo";
+        model.addAttribute("ratingUser",aux);
+        model.addAttribute("color",color);
         return "restaurantUserView";
     }
 

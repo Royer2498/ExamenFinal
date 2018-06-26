@@ -49,6 +49,10 @@ public class Restaurant {
     @OneToMany(mappedBy = "restaurant",cascade = CascadeType.REMOVE)
     private List<UserLike> userLikes;
 
+    @ManyToOne
+    @JoinColumn(name = "levelRestaurant_id")
+    private levelRestaurant levelRestaurant;
+
     public List<Comment> getComments() {
         return comments;
     }
@@ -135,5 +139,13 @@ public class Restaurant {
 
     public void setUserLikes(List<UserLike> userLikes) {
         this.userLikes = userLikes;
+    }
+
+    public com.ucbcba.demo.entities.levelRestaurant getLevelRestaurant() {
+        return levelRestaurant;
+    }
+
+    public void setLevelRestaurant(com.ucbcba.demo.entities.levelRestaurant levelRestaurant) {
+        this.levelRestaurant = levelRestaurant;
     }
 }

@@ -127,7 +127,7 @@
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.9/angular.min.js"></script>
     <link href='https://fonts.googleapis.com/css?family=Playfair+Display:400,700,400italic,700italic|Merriweather:300,400italic,300italic,400,700italic'/>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
-          integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">x
+          integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous"/>
     <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css"/>
     <style>
         /* Always set the map height explicitly to define the size of the div
@@ -205,6 +205,60 @@
                 <h4><b>You must be logged in to like or dislike the restaurant</b></h4>
             </div>
         </div>
+
+        <div class="form-group">
+            <div class="col-md-10">
+                <h4><b>Level Restaurant:</b> <span style="color:black" th:text="${restaurant.levelRestaurant.name}"></span>  </h4>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div th:if="${ratingUser} == impopular" class="col-md-10">
+                <h4><b>Level Restaurant (Users):</b>
+                    <span th:if="${color} == verde" style="color:black" ><mark style="background-color:green">Impopular</mark></span>
+                    <span th:if="${color} == rojo" style="color:black" ><mark style="background-color:red">Impopular</mark></span>
+                    <span th:if="${color} == amarillo" style="color:black" ><mark style="background-color:yellow">Impopular</mark></span>
+                </h4>
+            </div>
+        </div>
+        <div class="form-group">
+            <div th:if="${ratingUser} == poco" class="col-md-10">
+                <h4><b>Level Restaurant (Users):</b>
+                    <span th:if="${color} == verde" style="color:black" ><mark style="background-color:green">Poco popular</mark></span>
+                    <span th:if="${color} == rojo" style="color:black" ><mark style="background-color:red">Poco popular</mark></span>
+                    <span th:if="${color} == amarillo" style="color:black" ><mark style="background-color:yellow">Poco popular</mark></span>
+                </h4>
+            </div>
+        </div>
+        <div class="form-group">
+            <div th:if="${ratingUser} == intermedio" class="col-md-10">
+                <h4><b>Level Restaurant (Users):</b>
+                    <span th:if="${color} == verde" style="color:black" ><mark style="background-color:green">Intermedio</mark></span>
+                    <span th:if="${color} == rojo" style="color:black" ><mark style="background-color:red">Intermedio</mark></span>
+                    <span th:if="${color} == amarillo" style="color:black" ><mark style="background-color:yellow">Intermedio</mark></span>
+                </h4>
+            </div>
+        </div>
+        <div class="form-group">
+            <div th:if="${ratingUser} == popular" class="col-md-10">
+                <h4><b>Level Restaurant (Users):</b>
+                    <span th:if="${color} == verde" style="color:black" ><mark style="background-color:green">Popular</mark></span>
+                    <span th:if="${color} == rojo" style="color:black" ><mark style="background-color:red">Popular</mark></span>
+                    <span th:if="${color} == amarillo" style="color:black" ><mark style="background-color:yellow">Popular</mark></span>
+                </h4>
+            </div>
+        </div>
+        <div class="form-group">
+            <div th:if="${ratingUser} == muy" class="col-md-10">
+                <h4><b>Level Restaurant (Users):</b>
+                    <span th:if="${color} == verde" style="color:black" > <mark style="background-color:green">Muy Popular</mark></span>
+                    <span th:if="${color} == rojo" style="color:black" > <mark style="background-color:red">Muy Popular</mark></span>
+                    <span th:if="${color} == amarillo" style="color:black" > <mark style="background-color:yellow">Muy Popular</mark></span>
+                </h4>
+            </div>
+        </div>
+
+
 
         <div class="form-group">
             <div class="col-md-10">
